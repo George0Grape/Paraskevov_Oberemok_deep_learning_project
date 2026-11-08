@@ -1,0 +1,23 @@
+_target_: models.transformer_module.TRANSFORMERModule
+
+optimizer:
+  _target_: torch.optim.Adam
+  _partial_: true
+  lr: 0.001
+  weight_decay: 0.0
+
+scheduler:
+  _target_: torch.optim.lr_scheduler.ReduceLROnPlateau
+  _partial_: true
+  mode: min
+  factor: 0.1
+  patience: 10
+
+net:
+  _target_: models.components.transformer_net.TransformerModel
+  ntoken: 32000
+  d_model: 768
+  nhead: 12
+  d_hid: 64
+  nlayers: 12
+  dropout: 0.5
